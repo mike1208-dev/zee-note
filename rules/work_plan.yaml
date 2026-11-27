@@ -1,0 +1,29 @@
+# EXAMPLE rules — replace with the team's real rules when they are shared.
+name: Project / work plan
+description: Goal, tasks, timeline and risks of a piece of work.
+
+detect: ["work plan", "project plan", "milestone", "timeline", "deliverable", "risks"]
+
+rules:
+  - id: has_sections
+    title: Has Goal / Tasks / Timeline / Risks sections
+    check: required_sections
+    sections:
+      - ["Goal", "Goals", "Objective"]
+      - ["Tasks", "Scope", "Work items"]
+      - ["Timeline", "Schedule", "Milestones"]
+      - ["Risks", "Risks and mitigations"]
+
+  - id: no_secrets
+    title: No secrets (keys, passwords)
+    check: no_secrets
+
+  - id: no_placeholders
+    title: No placeholders left
+    check: forbidden_phrases
+    phrases: ["TODO", "TBD", "lorem ipsum"]
+
+  - id: owners_and_dates
+    title: Every task has an owner or a deadline
+    check: llm
+    question: "Does every task in the plan have an owner or a deadline?"

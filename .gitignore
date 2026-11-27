@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# Slack data for fine-tuning: never commit
+data/
+docs/
