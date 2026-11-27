@@ -209,7 +209,11 @@ http://localhost:8501. Its rules can come from a Supabase database (`SUPABASE_UR
 
 ## Contributing
 
-- Start each piece of work from a GitHub issue, on a branch named `feature/<issue-number>-short-description`.
+- Start each piece of work from a GitHub issue titled `[TYPE] Short description` (`[FIX]`, `[FEAT]`, `[REFACTOR]`,
+  `[CHORE]`), with a `## What` checklist and a `## DoD` checklist.
+- Work on a branch from `develop` named `type/issue-<number>-short-description`, such as `fix/issue-12-date-after-page-change`.
 - Commit messages are one line, such as `feat: add the team feed` or `fix: keep the date after another page`.
-- Never push directly to `main` or `develop`: every change goes through a pull request with `Closes #<issue>`.
+- Never push directly to `main` or `develop`: every change goes through a pull request into `develop`.
+- Pull request titles use the same style as commits. The description has `## What changed` and `## How tested` (say plainly
+  what you couldn't test), and ends with `Closes #<issue>`, or `Part of #<issue>` when it does only part of it.
 - Run the tests and the type check before opening a pull request.

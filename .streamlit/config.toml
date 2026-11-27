@@ -1,0 +1,26 @@
+[client]
+# Hide developer options (rerun, settings, deploy, ...) from the top-right menu
+toolbarMode = "minimal"
+
+[theme]
+font = "system-ui, 'Segoe UI', sans-serif"
+headingFontSizes = ["1.75rem", "1.4rem", "1.25rem", "1.1rem", "1rem", "1rem"]
+headingFontWeights = 700
+baseRadius = "8px"
+showWidgetBorder = true
+
+[theme.light]
+primaryColor = "#2855d9"
+backgroundColor = "#f5f6f8"
+secondaryBackgroundColor = "#f5f6f8"
+textColor = "#1d2433"
+borderColor = "#d9dee7"
+linkColor = "#2855d9"
+
+[theme.dark]
+primaryColor = "#7d9dff"
+backgroundColor = "#14171f"
+secondaryBackgroundColor = "#14171f"
+textColor = "#e8ebf2"
+borderColor = "#343b4b"
+linkColor = "#7d9dff"

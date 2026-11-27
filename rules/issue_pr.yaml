@@ -1,0 +1,28 @@
+# EXAMPLE rules — replace with the team's real rules when they are shared.
+name: Issue / PR description
+description: Why the change is needed, what changed, and how it was tested.
+
+detect: ["pull request", "## changes", "how to test", "## testing", "closes #", "fixes #"]
+
+rules:
+  - id: has_sections
+    title: Has Summary / Changes / Testing sections
+    check: required_sections
+    sections:
+      - ["Summary", "Description", "Why"]
+      - ["Changes", "What changed"]
+      - ["Testing", "How to test", "Test plan"]
+
+  - id: no_secrets
+    title: No secrets (keys, passwords)
+    check: no_secrets
+
+  - id: no_placeholders
+    title: No placeholders left
+    check: forbidden_phrases
+    phrases: ["TODO", "TBD", "FIXME", "lorem ipsum"]
+
+  - id: explains_why
+    title: Explains why the change is needed
+    check: llm
+    question: "Does the description explain WHY this change is needed, not only what was changed?"

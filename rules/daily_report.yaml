@@ -1,0 +1,261 @@
+# ZeeChecker rules for daily reports
+name: Daily report
+description: What I did yesterday, what I'll do today, and what is blocking me.
+
+# Words that suggest a document is this style (used by "Auto-detect")
+detect: ["daily report", "yesterday", "weekend", "today", "blockers"]
+
+rules:
+  - id: has_sections
+    title: Has Yesterday / Today / Blockers sections
+    check: required_sections
+    sections:
+      - ["Yesterday", "Weekend"]
+      - ["Today"]
+      - ["Blockers", "Notes"]
+
+  - id: tags_reviewer
+    title: Tags the reviewer at the top
+    check: mention_at_top
+
+  - id: has_hours
+    title: Gives working hours for Yesterday and Today
+    check: working_hours
+    sections:
+      - ["Yesterday", "Weekend"]
+      - ["Today"]
+
+  - id: concrete_tasks
+    title: Each task says what was done or will be done
+    check: llm
+    question: "Does each task say concretely what was done or will be done (not vague, like 'Worked on the login page')?"
+
+  - id: status_or_result
+    title: Each finished task has a status or result
+    check: llm
+    question: "Does each finished task (under Yesterday or Weekend) have a status or result, such as Merged, In review, In progress, Done, a PR link or a number?"
+
+  - id: clear_and_short
+    title: Clear and short
+    check: llm
+    question: "Is the report easy to read, with no repeated lines and no needless detail?"
+
+  - id: terms_explained
+    title: Unclear terms are explained
+    check: llm
+    question: "Are new, advanced or internal terms (such as VPC, OIDC or MLOps) explained? Common software terms (such as API, UI, UX, PR, QA, DB, CI, CSS, HTML, SQL, JSON, AWS, GitHub, React, TypeScript) and task labels (FEAT, BUG, FIX, CHORE) need no explanation."
+    known_terms:  # general software terms only, because this file is public
+      - API
+      - REST
+      - SDK
+      - CLI
+      - UI
+      - UX
+      - CSS
+      - HTML
+      - HTTP
+      - HTTPS
+      - URL
+      - JSON
+      - YAML
+      - CSV
+      - PDF
+      - SQL
+      - DB
+      - CRUD
+      - AI
+      - LLM
+      - OS
+      - CPU
+      - GPU
+      - IDE
+      - ID
+      - PR
+      - QA
+      - CI
+      - CD
+      - "CI/CD"
+      - "E2E"
+      - STG
+      - PM
+      - IT
+      - FYI
+      - MVP
+      - "P1"
+      - "P2"
+      - "P3"
+      - JWT
+      - OOP
+      - CRM
+      - SGD
+      - "UI/UX"
+      - LGTM
+      - ASAP
+      - QR
+      - FE
+      - JP
+      - GH
+      - PyTorch
+      - TensorFlow
+      - ML
+      - TypeORM
+      - "i18n"
+      - DTO
+      - "S3"
+      - CORS
+      - "JS"
+      - "GPT"
+      - "ChatGPT"
+      - "Claude"
+      - "VS"
+      - "VS Code"
+      - "AM"
+      - "JST"
+      - "EN"
+      - "IP"
+      - "HR"
+      - "US"
+      - "GET"
+      - "POST"
+      - "PUT"
+      - "PATCH"
+      - "DELETE"
+      - "Cloudflare"
+      - "Vercel"
+      - "Express"
+      - "Router"
+      - "Prettier"
+      - "Ubuntu"
+      - "npm"
+      - "yarn"
+      - "Kanban"
+      - "localhost"
+      - "Copilot"
+      - "Zustand"
+      - "Hono"
+      - "Prisma"
+      - "Drizzle"
+      - "Vitest"
+      - "Supertest"
+      - "Swagger"
+      - "scaffold"
+      - "seed"
+      - "CTA"
+      - FEAT
+      - BUG
+      - FIX
+      - CHORE
+      - REFACTOR
+      - DOCS
+      - TEST
+      - TICKET
+      - EPIC
+      - GitHub
+      - Git
+      - Slack
+      - Jira
+      - Confluence
+      - Figma
+      - Docker
+      - Colab
+      - AWS
+      - IAM
+      - VPS
+      - Terraform
+      - React
+      - "Next.js"
+      - Node
+      - "Node.js"
+      - Vite
+      - Tailwind
+      - TypeScript
+      - JavaScript
+      - Python
+      - PostgreSQL
+      - ESLint
+      - C
+      - "C++"
+      - "C/C++"
+      - frontend
+      - backend
+      - server
+      - client
+      - database
+      - storage
+      - queue
+      - cache
+      - endpoint
+      - request
+      - response
+      - payload
+      - token
+      - session
+      - auth
+      - authentication
+      - authorization
+      - permission
+      - login
+      - repository
+      - repo
+      - branch
+      - commit
+      - merge
+      - clone
+      - pull request
+      - draft
+      - review
+      - release
+      - version
+      - dependency
+      - library
+      - package
+      - module
+      - framework
+      - build
+      - deploy
+      - deployment
+      - staging
+      - production
+      - prod
+      - environment
+      - env
+      - dev
+      - local
+      - workflow
+      - pipeline
+      - migration
+      - refactor
+      - refactoring
+      - config
+      - render
+      - bug
+      - issue
+      - ticket
+      - task
+      - test
+      - testing
+      - error
+      - alert
+      - validation
+      - performance
+      - scope
+      - requirements
+      - template
+      - component
+      - page
+      - form
+      - modal
+      - dashboard
+      - filter
+      - pagination
+      - layout
+      - table
+      - input
+      - agent
+      - model
+      - prompt
+
+  - id: real_blockers
+    title: Blockers are stated clearly
+    check: llm
+    question: "Are blockers stated clearly, with 'None' used only when the report mentions no problem that blocks the work?"
