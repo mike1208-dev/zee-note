@@ -1,0 +1,10 @@
+{
+  // VS Code suggests these when someone opens the project
+  "recommendations": [
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "ms-toolsai.jupyter",
+    "redhat.vscode-yaml",
+    "qwtel.sqlite-viewer"
+  ]
+}
